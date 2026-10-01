@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4"><div><h2>🤖 AI Grievance Management</h2><p class="text-muted">Describe your problem; AI routes it automatically.</p></div></div>
+<div class="row g-4"><div class="col-lg-5"><div class="card shadow-sm border-0"><div class="card-body"><h5>Submit Complaint</h5>
+<form method="post"><textarea name="text" class="form-control mb-3" rows="6" placeholder="Example: The projector in Lab 3 is not working..." required></textarea><button class="btn btn-primary w-100">Analyze & Submit with AI</button></form>
+</div></div></div>
+<div class="col-lg-7"><div class="card shadow-sm border-0"><div class="card-body"><h5>Grievance Queue</h5><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Issue</th><th>AI Category</th><th>Dept.</th><th>Priority</th><th>Status</th>{% if user.role=="admin" %}<th></th>{% endif %}</tr></thead><tbody>
+{% for r in rows %}<tr><td>{{r.text}}</td><td><span class="badge bg-secondary">{{r.category}}</span></td><td>{{r.department}}</td><td><span class="badge {% if r.priority=='High' %}bg-danger{% elif r.priority=='Medium' %}bg-warning text-dark{% else %}bg-success{% endif %}">{{r.priority}}</span></td><td>{{r.status}}</td>{% if user.role=="admin" %}<td>{% if r.status!="Resolved" %}<form method="post" action="/grievances/{{r.id}}/resolve"><button class="btn btn-sm btn-success">Resolve</button></form>{% endif %}</td>{% endif %}</tr>{% endfor %}
+</tbody></table></div></div></div></div>
+{% endblock %}

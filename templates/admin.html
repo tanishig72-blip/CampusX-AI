@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}<h2>📊 Admin Command Center</h2><p class="text-muted">Campus-wide operational overview.</p>
+<div class="row g-3">{% for name,value in stats %}<div class="col-6 col-lg-3"><div class="stat-card"><div class="small text-muted">{{name}}</div><div class="display-6 fw-bold">{{value}}</div></div></div>{% endfor %}</div>
+<div class="card shadow-sm border-0 mt-4"><div class="card-body"><h5>System Modules</h5><div class="row g-3 mt-1">{% for x in ["AI Grievance Routing","Attendance Analytics","Smart Timetable","Digital Skill Passport","Smart Library","Lost & Found Matching"] %}<div class="col-md-6 col-lg-4"><div class="module">{{x}} <span>✓</span></div></div>{% endfor %}</div></div></div>
+{% endblock %}

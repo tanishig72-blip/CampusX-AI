@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusX AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="{{ url_for('dashboard') }}"><i class="bi bi-cpu"></i> CampusX AI</a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="nav">
+{% if user %}
+<ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('grievances') }}">Grievances</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('timetable') }}">Timetable</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('skills') }}">Skill Passport</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('library') }}">Library</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ url_for('lost_found') }}">Lost & Found</a></li>
+{% if user.role=="admin" %}<li class="nav-item"><a class="nav-link" href="{{ url_for('admin') }}">Admin</a></li>{% endif %}
+</ul>
+<span class="text-white me-3">{{ user.name }}</span>
+<a class="btn btn-outline-light btn-sm" href="{{ url_for('logout') }}">Logout</a>
+{% endif %}
+</div></div></nav>
+<div class="container py-4">
+{% with messages=get_flashed_messages() %}{% if messages %}{% for m in messages %}<div class="alert alert-info">{{m}}</div>{% endfor %}{% endif %}{% endwith %}
+{% block content %}{% endblock %}
+</div>
+<footer class="text-center py-4 text-secondary">CampusX AI • Smart Digital University Hackathon MVP</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

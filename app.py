@@ -45,7 +45,7 @@ def init_db():
     """)
     # Seed demo users
     try:
-        cur.execute("INSERT INTO users(name,email,password,role) VALUES(?,?,?,?,?)",
+        cur.execute("INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)",
                     ("Demo Student","student@campusx.ai","1234","student"))
     except sqlite3.IntegrityError:
         pass

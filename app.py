@@ -273,6 +273,7 @@ def admin():
     conn.close()
     return render_template("admin.html",stats=stats,user=current_user())
 
+init_db()
+
 if __name__=="__main__":
-    init_db()
     app.run(debug=True)

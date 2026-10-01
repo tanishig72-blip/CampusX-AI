@@ -50,7 +50,7 @@ def init_db():
     except sqlite3.IntegrityError:
         pass
     try:
-        cur.execute("INSERT INTO users(name,email,password,role) VALUES(?,?,?,?,?)",
+        cur.execute("INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)",
                     ("Campus Admin","admin@campusx.ai","admin123","admin"))
     except sqlite3.IntegrityError:
         pass
